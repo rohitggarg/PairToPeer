@@ -29,6 +29,7 @@ public class ObjectUtilities {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static Command readCommandDelete(HttpServletRequest req) {
 		
 		Enumeration<String> parameters = req.getHeaders("toDelete");

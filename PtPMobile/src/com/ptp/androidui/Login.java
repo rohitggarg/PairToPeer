@@ -6,7 +6,6 @@ import java.util.UUID;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.ptp.androidui.enums.Method;
-import com.ptp.dataobject.Command;
 
 public class login extends Activity  {
     public static final UUID uuid = UUID.randomUUID();

@@ -10,8 +10,6 @@ import com.ptp.server.util.EditorTextSyncer;
 
 public class UsersServlet extends CommandProcessor{
 	
-	private static final long serialVersionUID = -1082709317514688637L;
-	
 	@Override
 	public Result doPost(Command readCommand) throws Exception {
 		Result result = new Result();

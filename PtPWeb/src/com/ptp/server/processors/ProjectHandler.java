@@ -16,7 +16,6 @@ import com.ptp.server.constant.AppConstants;
 public class ProjectHandler extends CommandProcessor {
 
 	private static final String FS_ROOT_DIRECTORY = "fs.root.directory";
-	private static final long serialVersionUID = 1L;
 	public static File rootDir = new File(ResourceBundle.getBundle(
 			AppConstants.CONFIGURATION).getString(FS_ROOT_DIRECTORY));
 

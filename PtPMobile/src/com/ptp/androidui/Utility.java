@@ -7,7 +7,6 @@ import java.io.ObjectOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
-import java.util.UUID;
 
 import com.ptp.androidui.enums.Method;
 import com.ptp.dataobject.Command;

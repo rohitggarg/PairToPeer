@@ -13,7 +13,6 @@ import com.ptp.server.util.EditorTextSyncer;
  * Servlet implementation class PairingServlet
  */
 public class PairingServlet extends CommandProcessor{
-	private static final long serialVersionUID = 1L;
 
 	public static HashMap<String, EditorTextSyncer> sessions;
     
