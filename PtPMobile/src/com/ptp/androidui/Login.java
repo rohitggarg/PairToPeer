@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.ptp.androidui.enums.Method;
 
-public class login extends Activity  {
+public class Login extends Activity  {
     public static final UUID uuid = UUID.randomUUID();
 	/** Called when the activity is first created. */
     @Override
@@ -60,7 +60,7 @@ public class login extends Activity  {
 					//cmd.setCommand("connect");
 					userName = name.getText().toString();
 					//cmd.setArguments(Arrays.asList(userName));
-					utility.sendCommand("connect",Arrays.asList(userName),Method.PUT);
+					Utility.sendCommand("connect",Arrays.asList(userName),Method.PUT);
 					//utility.sendCommand(cmd, Method.POST);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

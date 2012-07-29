@@ -60,8 +60,8 @@ public class PairtoPeer extends Activity {
 
 			//Command cmd = new Command();
 			//cmd.setCommand("connect");
-			//Result userslist = utility.sendCommand(cmd, Method.POST);
-			Result userslist=utility.sendCommand("connect",null,Method.POST);//new
+			//Result userslist = Utility.sendCommand(cmd, Method.POST);
+			Result userslist=Utility.sendCommand("connect",null,Method.POST);//new
 			 // userslist.getResults().put("Saurav", result);
 			 // userslist.getResults().put("Ravi", result );
 			// userslist.getResults().put("Rajan", result);
@@ -100,13 +100,13 @@ public class PairtoPeer extends Activity {
 										//Command cmd = new Command();
 										//cmd.setCommand("pair");
 										//cmd.setArguments(Arrays.asList(text));
-										//Editor sendCommand = utility.sendCommand(cmd,	Method.PUT).getResultTargetEditor();
+										//Editor sendCommand = Utility.sendCommand(cmd,	Method.PUT).getResultTargetEditor();
 										
 										Editor sendCommand;
-										if(pairedTo.equalsIgnoreCase(login.getUserName())) {
-											sendCommand=utility.sendCommand("pair",Arrays.asList(pairedTo),Method.PUT).getResultTargetEditor();;//new
+										if(pairedTo.equalsIgnoreCase(Login.getUserName())) {
+											sendCommand=Utility.sendCommand("pair",Arrays.asList(pairedTo),Method.PUT).getResultTargetEditor();;//new
 										} else {
-											sendCommand=utility.sendCommand("pair",Arrays.asList(pairedTo),Method.POST).getResultTargetEditor();;//new
+											sendCommand=Utility.sendCommand("pair",Arrays.asList(pairedTo),Method.POST).getResultTargetEditor();;//new
 										}
 										
 										texteditor1.setText(sendCommand.getText());
@@ -142,8 +142,8 @@ public class PairtoPeer extends Activity {
 								//Command c = new Command();
 								//c.setCommand("type");
 								//c.setArguments(Arrays.asList(login.getUserName(),textentered.toString(),coordinates[0], coordinates[1]));
-								//utility.sendCommand(c, Method.PUT);
-								utility.sendCommand("type",Arrays.asList(pairedTo,textentered.toString(),coordinates[0], coordinates[1]),Method.PUT);//new
+								//Utility.sendCommand(c, Method.PUT);
+								Utility.sendCommand("type",Arrays.asList(pairedTo,textentered.toString(),coordinates[0], coordinates[1]),Method.PUT);//new
 								textentered.delete(0, textentered.length());
 							} else {
 								counter[0] ++ ;
@@ -169,7 +169,7 @@ public class PairtoPeer extends Activity {
 					while(true) {
 						if(pairedTo != null) {
 							try {
-								Result result = utility.sendCommand("type", Arrays.asList(pairedTo), Method.POST);
+								Result result = Utility.sendCommand("type", Arrays.asList(pairedTo), Method.POST);
 								if(result!=null && result.getResults()!=null && result.getResults().size() > 0) {
 									for (int i = 0; i < result.getResults().size(); i++) {
 										Editor type = result.getResults().get(i + "").getResultTargetEditor();
@@ -220,8 +220,8 @@ public class PairtoPeer extends Activity {
 								//c.setCommand("type");
 								//c.setArguments(Arrays.asList(login.getUserName(),textentered.toString(),coordinates[0], coordinates[1]));
 								try {
-									//utility.sendCommand(c, Method.PUT);
-									utility.sendCommand("type",Arrays.asList(pairedTo,textentered.toString(),coordinates[0], coordinates[1]),Method.PUT);//new
+									//Utility.sendCommand(c, Method.PUT);
+									Utility.sendCommand("type",Arrays.asList(pairedTo,textentered.toString(),coordinates[0], coordinates[1]),Method.PUT);//new
 								} catch (IOException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -270,8 +270,8 @@ public class PairtoPeer extends Activity {
 					 }
 
 					try {
-						//Result sendCommand = utility.sendCommand(usercmd, Method.valueOf(cmdarray[1]));
-						Result sendCommand =utility.sendCommand(cmdarray[0],arguments,Method.valueOf(cmdarray[1]));
+						//Result sendCommand = Utility.sendCommand(usercmd, Method.valueOf(cmdarray[1]));
+						Result sendCommand =Utility.sendCommand(cmdarray[0],arguments,Method.valueOf(cmdarray[1]));
 						if(sendCommand!=null & sendCommand.getResultTargetEditor()!=null)
 						{
 							String projectname=cmdarray[2];

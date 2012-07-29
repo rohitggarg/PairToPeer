@@ -12,7 +12,7 @@ import com.ptp.androidui.enums.Method;
 import com.ptp.dataobject.Command;
 import com.ptp.dataobject.Result;
 
-public class utility {
+public class Utility {
 
 	/*public static Result sendCommand(Command cmd,
 			Method method) throws IOException {
@@ -50,13 +50,13 @@ public class utility {
 		
 		cmd.setCommand(command);
 		cmd.setArguments(args);
-		cmd.setCommandId(login.uuid);
+		cmd.setCommandId(Login.uuid);
 		connection.setDoOutput(true);
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(connection.getOutputStream());
 		objectOutputStream.writeObject(cmd);
 		} else {
 		connection.setRequestProperty("command", command);
-		connection.setRequestProperty("uuid", login.uuid.toString());
+		connection.setRequestProperty("uuid", Login.uuid.toString());
 		for (String string : args) {
 		connection.setRequestProperty("toDelete", string);
 		}
