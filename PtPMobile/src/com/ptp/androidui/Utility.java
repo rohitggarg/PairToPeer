@@ -40,7 +40,7 @@ public class Utility {
 			throw new IOException("Command execution failure");
 	}*/
 	public static Result sendCommand(String command, List<String> args, Method method) throws IOException, ClassNotFoundException {
-		String url = "http://10.40.181.210:8080/PtPWeb";
+		String url = "http://10.0.2.2:8080/PtPWeb";
 		//String url = "http://192.168.1.6:8080/PtPWeb";
 		URL url1 = new URL(url);
 		Command cmd = new Command();
