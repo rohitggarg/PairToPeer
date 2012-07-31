@@ -14,63 +14,41 @@ import com.ptp.dataobject.Result;
 
 public class Utility {
 
-	/*public static Result sendCommand(Command cmd,
-			Method method) throws IOException {
-		String url = "http://192.168.1.3:8080/PtPWeb";
-		URL url1 = new URL(url);
-		HttpURLConnection conn = (HttpURLConnection) url1.openConnection();
-		conn.setRequestMethod(method.toString());
-		conn.setDoOutput(true);
-		cmd.setCommandId(login.uuid);
-		ObjectOutputStream objectOutputStream = new ObjectOutputStream(
-				conn.getOutputStream());
-		objectOutputStream.writeObject(cmd);
-		objectOutputStream.flush();
-		objectOutputStream.close();
-		Result result = null;
+	public static Result sendCommand(String command, List<String> args,
+			Method method) throws IOException, ClassNotFoundException {
+		String url = "http://10.0.2.2:8080/PtPWeb";
+		URL serverUrl = new URL(url);
+		Command cmd = new Command();
+		HttpURLConnection serverSide = (HttpURLConnection) serverUrl
+				.openConnection();
+		serverSide.setRequestMethod(method.name());
+		if (method != Method.DELETE) {
+
+			cmd.setCommand(command);
+			cmd.setArguments(args);
+			cmd.setCommandId(Login.uuid);
+			serverSide.setDoOutput(true);
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(
+					serverSide.getOutputStream());
+			objectOutputStream.writeObject(cmd);
+		} else {
+			serverSide.setRequestProperty("command", command);
+			serverSide.setRequestProperty("uuid", Login.uuid.toString());
+			for (String string : args) {
+				serverSide.setRequestProperty("toDelete", string);
+			}
+		}
 		try {
-			 result = (Result) new ObjectInputStream(
-					conn.getInputStream()).readObject();
-		} catch (Exception e) {
+			ObjectInputStream inStream = new ObjectInputStream(
+					serverSide.getInputStream());
+			Result readObject = (Result) inStream.readObject();
+			if (readObject.getCommandId().equals(cmd.getCommandId())) {
+				return readObject;
+			} else
+				throw new IOException("Id invalid");
+		} catch (EOFException e) {
 			return null;
 		}
-		if (result.getCommandId().equals(cmd.getCommandId()))
-			return result;
-		else
-			throw new IOException("Command execution failure");
-	}*/
-	public static Result sendCommand(String command, List<String> args, Method method) throws IOException, ClassNotFoundException {
-		String url = "http://10.0.2.2:8080/PtPWeb";
-		//String url = "http://192.168.1.6:8080/PtPWeb";
-		URL url1 = new URL(url);
-		Command cmd = new Command();
-		HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
-		connection.setRequestMethod(method.name());
-		if(method!=Method.DELETE) {
-		
-		cmd.setCommand(command);
-		cmd.setArguments(args);
-		cmd.setCommandId(Login.uuid);
-		connection.setDoOutput(true);
-		ObjectOutputStream objectOutputStream = new ObjectOutputStream(connection.getOutputStream());
-		objectOutputStream.writeObject(cmd);
-		} else {
-		connection.setRequestProperty("command", command);
-		connection.setRequestProperty("uuid", Login.uuid.toString());
-		for (String string : args) {
-		connection.setRequestProperty("toDelete", string);
-		}
-		}
-		try {
-		ObjectInputStream inStream = new ObjectInputStream(connection.getInputStream());
-		Result readObject = (Result) inStream.readObject();
-		if(readObject.getCommandId().equals(cmd.getCommandId())) {
-		return readObject;
-		} else throw new IOException("Id invalid");
-		} catch(EOFException e) {
-		return null;
-		}
-		}
+	}
 
-	
 }

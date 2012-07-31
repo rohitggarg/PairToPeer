@@ -1,4 +1,5 @@
 package com.ptp.androidui;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.UUID;
@@ -17,70 +18,54 @@ import android.widget.TextView;
 
 import com.ptp.androidui.enums.Method;
 
-public class Login extends Activity  {
-    public static final UUID uuid = UUID.randomUUID();
+public class Login extends Activity {
+	public static final UUID uuid = UUID.randomUUID();
+
 	/** Called when the activity is first created. */
-    @Override
-    
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //HttpClient h1= new DefaultHttpClient();
-        //setContentView(R.layout.main);
-        /*Result userslist=new Result();
-        userslist.setResults(new HashMap<String, Result>());
-        Result result =new Result();
-        result.setCommandId(UUID.randomUUID());
-       *//* HTTP Client */
-        ScrollView sv=new ScrollView(this);
-		LinearLayout ll = new LinearLayout(this);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		ScrollView scrollView = new ScrollView(this);
+		LinearLayout linearLayout = new LinearLayout(this);
 		Resources res = getResources();
-		Drawable d = res.getDrawable(R.drawable.login_image);
-		ll.setBackgroundDrawable(d);
-        ll.setOrientation(LinearLayout.VERTICAL);  
-		sv.addView(ll);
-		TextView tv1=new TextView(this);
-		tv1.setText("ENTER YOUR NAME!!");
-		//tv1.setTextColor(Color.BLUE);
-		tv1.setTextAppearance(getApplicationContext(),R.style.CodeFont);
-		ll.addView(tv1);
-        final EditText  name=new EditText(this);
-        ll.addView(name);
-        Button b = new Button(this);
-       // b.setWidth(150);
-        b.setText("REGISTER"); 
-       // b.setLayoutParams(ViewGroup. );
-       // b.setTextAppearance(getApplicationContext(), R.style.CodeButton);
-        ll.addView(b);  
-        this.setContentView(sv);
-        b.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(),PairtoPeer.class);
-                try {
-					//Command cmd = new Command();
-					//cmd.setCommand("connect");
+		Drawable loginImage = res.getDrawable(R.drawable.login_image);
+		linearLayout.setBackgroundDrawable(loginImage);
+		linearLayout.setOrientation(LinearLayout.VERTICAL);
+		scrollView.addView(linearLayout);
+		TextView nameTextBox = new TextView(this);
+		nameTextBox.setText("ENTER YOUR NAME!!");
+		nameTextBox.setTextAppearance(getApplicationContext(), R.style.CodeFont);
+		linearLayout.addView(nameTextBox);
+		final EditText name = new EditText(this);
+		name.setLines(1);
+		linearLayout.addView(name);
+		Button registerButton = new Button(this);
+		registerButton.setText("REGISTER");
+		linearLayout.addView(registerButton);
+		this.setContentView(scrollView);
+		registerButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(),
+						PairtoPeer.class);
+				try {
 					userName = name.getText().toString();
-					//cmd.setArguments(Arrays.asList(userName));
-					Utility.sendCommand("connect",Arrays.asList(userName),Method.PUT);
-					//utility.sendCommand(cmd, Method.POST);
+					Utility.sendCommand("connect", Arrays.asList(userName),
+							Method.PUT);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-                startActivityForResult(myIntent, 0);
-                
-            }
-            });
-       // EditText texteditor =new EditText(this);
-       
-       
-    }
-    public static String getUserName()
-    {
-    	return userName;
-    }
-    private static String userName;  
-	
+				startActivityForResult(myIntent, 0);
+
+			}
+		});
+	}
+
+	public static String getUserName() {
+		return userName;
+	}
+
+	private static String userName;
+
 }

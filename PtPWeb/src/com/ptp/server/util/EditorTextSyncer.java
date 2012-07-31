@@ -25,9 +25,14 @@ public class EditorTextSyncer {
 		for (int i = 0 ; i < textLines.length ; i++ ) {
 			String textToEdit = textLines[i];
 			if(e.getPosition().getLineNumber() == i + 1) {
-				textBuffer.append(textToEdit.substring(0,e.getPosition().getColumnNumber()));
-				textBuffer.append(e.getText());
-				textBuffer.append(textToEdit.substring(e.getPosition().getColumnNumber()));
+				Integer columnNumber = e.getPosition().getColumnNumber();
+				textBuffer.append(textToEdit.substring(0,columnNumber));
+				if(e.getText()!=null)
+					textBuffer.append(e.getText());
+				if(e.getDeleteNumber()!=null) {
+					columnNumber += e.getDeleteNumber();
+				}
+				textBuffer.append(textToEdit.substring(columnNumber));
 			} else {
 				textBuffer.append(textToEdit);
 			}

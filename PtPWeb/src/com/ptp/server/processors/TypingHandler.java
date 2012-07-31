@@ -29,7 +29,11 @@ public class TypingHandler extends CommandProcessor {
 	@Override
 	public Result doDelete(Command readCommand) throws Exception {
 		EditorTextSyncer editorTextSyncer = PairingServlet.sessions.get(readCommand.getArguments().get(0));
-		editorTextSyncer.removeSession(readCommand.getCommandId());
+		Editor e = new Editor();
+		e.setUserId(readCommand.getCommandId());
+		e.setDeleteNumber(new Integer(readCommand.getArguments().get(1)));
+		e.setPosition(new Pointer(new Integer(readCommand.getArguments().get(2)), new Integer(readCommand.getArguments().get(3))));
+		editorTextSyncer.type(e);
 		return null;
 	}
 

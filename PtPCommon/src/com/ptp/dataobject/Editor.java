@@ -8,6 +8,7 @@ public class Editor  implements Serializable, Cloneable {
 	private Pointer position;
 	private UUID userId;
 	private String text;
+	private Integer deleteNumber;
 	public Pointer getPosition() {
 		return position;
 	}
@@ -25,6 +26,12 @@ public class Editor  implements Serializable, Cloneable {
 	}
 	public void setText(String text) {
 		this.text = text;
+	}
+	public Integer getDeleteNumber() {
+		return deleteNumber;
+	}
+	public void setDeleteNumber(Integer deleteNumber) {
+		this.deleteNumber = deleteNumber;
 	}
 	@Override
 	public String toString() {

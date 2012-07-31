@@ -13,7 +13,7 @@ public class Pointer implements Serializable, Cloneable{
 		columnNumber = START;
 	}
 	
-	public Pointer(int line, int column) {
+	public Pointer(Integer line, Integer column) {
 		lineNumber = line;
 		columnNumber = column;
 	}

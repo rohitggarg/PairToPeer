@@ -36,8 +36,8 @@ public class PairingServlet extends CommandProcessor{
 
 	@Override
 	public Result doDelete(Command readCommand) throws Exception {
-		String parameter = readCommand.getArguments().get(0);
-		sessions.remove(parameter);
+		EditorTextSyncer editorTextSyncer = sessions.get(readCommand.getArguments().get(0));
+		editorTextSyncer.removeSession(readCommand.getCommandId());
 		return null;
 	}
 
